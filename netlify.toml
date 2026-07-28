@@ -23,8 +23,54 @@
   force = true
 
 # perfherder2  ->  https://perfherder2.netlify.app/
+#
+# 302, not 200, because this is the one dashboard hosted on Netlify rather than
+# GitHub Pages, and a 200 rewrite between Netlify sites on different teams is
+# refused at the edge -- it returns an empty 500. See docs.netlify.com/manage/
+# routing/redirects/rewrites-proxies/ ("Proxy to another Netlify site").
+#
+# Consequences of 302 vs the 200 used above:
+#   - inbound deep links still work: #perfherder2/<suffix> resolves against
+#     /gh/perfherder2/ and :splat carries <suffix> through to the real origin
+#   - the iframe becomes cross-origin, so back-sync (reflecting the dashboard's
+#     own URL into this site's address bar) is disabled; index.html already
+#     degrades to inbound-only deep linking when contentWindow reads throw
 [[redirects]]
   from = "/gh/perfherder2/*"
   to = "https://perfherder2.netlify.app/:splat"
-  status = 200
+  status = 302
   force = true
+
+# Restoring the same-origin 200 rewrite for perfherder2 needs two things, and
+# neither can be done from this repo alone -- hence the 302 above.
+#
+# 1. Put perfherder2 on the same Netlify team as this site, or move it to
+#    GitHub Pages like the other two dashboards. Until then EVERY rewrite to
+#    perfherder2.netlify.app 500s, including the asset rules below, which is
+#    why they are commented out rather than live.
+#
+# 2. Fix asset resolution. perfherder2 is a Vite build that emits absolute
+#    paths (/assets/index-*.js, /favicon.svg), so under the /gh/perfherder2/
+#    prefix the browser requests them from this site's root, not the proxied
+#    subpath. The other two dashboards work because they use relative paths
+#    (styles.css, app.js), which the /* splat already covers.
+#
+#    Preferred fix is in the perfherder2 repo -- set `base: '/gh/perfherder2/'`
+#    in vite.config.js so it emits /gh/perfherder2/assets/... and the existing
+#    splat rule covers it with no rules below at all.
+#
+#    Otherwise, proxy its absolute paths from this site's root. Note this claims
+#    /assets/* site-wide for perfherder2, so any future dashboard needing root
+#    assets will collide.
+#
+# [[redirects]]
+#   from = "/assets/*"
+#   to = "https://perfherder2.netlify.app/assets/:splat"
+#   status = 200
+#   force = true
+#
+# [[redirects]]
+#   from = "/favicon.svg"
+#   to = "https://perfherder2.netlify.app/favicon.svg"
+#   status = 200
+#   force = true
