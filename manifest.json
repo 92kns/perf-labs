@@ -11,6 +11,12 @@
       "title": "Nova Compare",
       "description": "Nova comparison dashboard.",
       "url": "/gh/nova-compare/"
+    },
+    {
+      "slug": "perfherder2",
+      "title": "Perfherder2",
+      "description": "Perfherder graphs, reimagined.",
+      "url": "/app/perfherder2/"
     }
   ]
 }
