@@ -24,7 +24,7 @@
 
 # perfherder2  ->  https://perfherder2.netlify.app/
 [[redirects]]
-  from = "/app/perfherder2/*"
+  from = "/gh/perfherder2/*"
   to = "https://perfherder2.netlify.app/:splat"
   status = 200
   force = true
