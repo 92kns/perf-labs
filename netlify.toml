@@ -28,22 +28,3 @@
   to = "https://perfherder2.netlify.app/:splat"
   status = 200
   force = true
-
-# perfherder2 is a Vite build served from the root of its own site, so its HTML
-# references assets with absolute paths ("/assets/index-*.js", "/favicon.svg")
-# rather than relative ones. Under the subpath proxy above those requests land on
-# this site's root, so they need their own rules. This claims /assets/* site-wide,
-# which is fine while perfherder2 is the only dashboard using absolute paths.
-# The cleaner fix is to set Vite's `base` to "/app/perfherder2/" in perfherder2
-# itself, after which these two rules can be dropped.
-[[redirects]]
-  from = "/assets/*"
-  to = "https://perfherder2.netlify.app/assets/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/favicon.svg"
-  to = "https://perfherder2.netlify.app/favicon.svg"
-  status = 200
-  force = true
