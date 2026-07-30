@@ -22,6 +22,22 @@
   status = 200
   force = true
 
+# perftest-triage-report  ->  https://92kns.github.io/perftest-triage-report/
+[[redirects]]
+  from = "/gh/perftest-triage-report/*"
+  to = "https://92kns.github.io/perftest-triage-report/:splat"
+  status = 200
+  force = true
+
+# noise-dash  ->  https://92kns.github.io/noise-dash/
+# Its index is a relative meta-refresh to noise_dashboard.html, which the splat
+# covers; the iframe lands there and back-sync reports #noise-dash/noise_dashboard.html.
+[[redirects]]
+  from = "/gh/noise-dash/*"
+  to = "https://92kns.github.io/noise-dash/:splat"
+  status = 200
+  force = true
+
 # perfherder2  ->  https://perfherder2.netlify.app/
 #
 # 302, not 200, because this is the one dashboard hosted on Netlify rather than

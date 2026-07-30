@@ -17,6 +17,18 @@
       "title": "Perfherder2",
       "description": "Perfherder graphs, reimagined.",
       "url": "/gh/perfherder2/"
+    },
+    {
+      "slug": "perftest-triage-report",
+      "title": "Perftest Triage Report",
+      "description": "Daily Bugzilla triage report.",
+      "url": "/gh/perftest-triage-report/"
+    },
+    {
+      "slug": "noise-dash",
+      "title": "Noise Dashboard",
+      "description": "Experimental per-test-per-platform noisiness metrics, currently SP3 only.",
+      "url": "/gh/noise-dash/"
     }
   ]
 }
