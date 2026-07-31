@@ -38,6 +38,14 @@
   status = 200
   force = true
 
+# speculation-rules-prefetch  ->  https://acreskeymoz.github.io/speculation_rules/dashboard/
+# Target is a subpath of a user Pages site, not a repo root; no relative assets.
+[[redirects]]
+  from = "/gh/speculation-rules-prefetch/*"
+  to = "https://acreskeymoz.github.io/speculation_rules/dashboard/:splat"
+  status = 200
+  force = true
+
 # perfherder2  ->  https://perfherder2.netlify.app/
 #
 # 302, not 200, because this is the one dashboard hosted on Netlify rather than
