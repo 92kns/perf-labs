@@ -29,6 +29,12 @@
       "title": "Noise Dashboard",
       "description": "Experimental per-test-per-platform noisiness metrics, currently SP3 only.",
       "url": "/gh/noise-dash/"
+    },
+    {
+      "slug": "speculation-rules-prefetch",
+      "title": "Speculation Rules Prefetch",
+      "description": "Speculation Rules performance dashboard, Firefox vs Chrome.",
+      "url": "/gh/speculation-rules-prefetch/"
     }
   ]
 }
